@@ -1,0 +1,54 @@
+extends layout
+
+block head
+    head
+      title Chat
+      link(href='/stylesheets/chat.css', rel='stylesheet')
+      link(href='/stylesheets/bootstrap.css', rel='stylesheet')
+      link(href='/stylesheets/style.css', rel='stylesheet')
+      
+
+      
+
+block content
+  
+  iframe(src='' id='try', height='540px', width='100%', style ='overflow:hidden;' , hidden, scrolling="no")
+  .chatbox()
+    .centered-form(width='100%')
+      .centered-form__form
+        form( name="myForm")
+            .forms-chat
+              h3(style='color:#fff;') Join a Chat
+          .forms-chat
+            label(style='color:#fff;')  Display name
+              input(type='text', name='name', autofocus='', id="username", readonly, style='color:black;')
+          .forms-chat
+            label(style='color:#fff;') Room name
+            input(type='text', name='room', id="roomname")
+            .forms-chat
+              button(onclick='check();', style="color:#fff;") Join
+  
+  script(type='text/javascript').
+    document.getElementById('username').value = "#{username}";
+    
+    function check() {
+      var room = document.getElementById('roomname').value;
+      if(room === '') {
+        alert('Please enter room number');
+        return;
+      }
+      JoinChat();
+    }
+    function JoinChat() {
+      var name = document.getElementById('username').value;
+      var room = document.getElementById('roomname').value;
+      console.log(name,room);
+      
+      document.getElementById('try').src = `http://localhost:8080/chat.html?name=${name}&room=${room}`;
+      console.log(document.getElementById('try').src);
+      document.getElementById('try').removeAttribute("hidden");
+      document.querySelector('.chatbox').setAttribute("hidden", true)
+
+    }
+    
+

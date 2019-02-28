@@ -1,0 +1,44 @@
+doctype html
+html(lang='en')
+  block head
+    head
+      title Welcome
+      link(href='http://localhost:3000/stylesheets/bootstrap.css', rel='stylesheet')
+      link(href='http://localhost:3000/stylesheets/style.css', rel='stylesheet')
+      link(href='http://localhost:3000/stylesheets/home.css', rel='stylesheet')
+      script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+      script(src='http://localhost:3000/javascripts/bootstrap.js')
+      script(src='http://localhost:3000/javascripts/particles.js')
+      script(src='http://localhost:3000/javascripts/aim.js')
+      script(src='http://localhost:3000/javascripts/jquery.min.js')
+  body
+    .navbar.navbar-default(role='navigation', style='background-color:white;')
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='#', style='background-color:#fff;font-weight:bold;font-size:1.3em;') BlueCup
+        .navbar-collapse.collapse
+          ul.nav.navbar-nav
+            if user
+             li(class=(title == 'Members' ? 'active' : ''))
+               a(href='/') Members
+              li(class=(title == 'File Sharing' ? 'active' : ''))
+                a(href='/file') File Sharing
+            if !user
+             li(class=(title == 'Register' ? 'active' : ''))
+               a(href='/users/register') Register
+             li(class=(title == 'Login' ? 'active' : ''))
+               a(href='/users/login') Login
+          ul.nav.navbar-nav.navbar-right
+           if user
+            li
+               a(href='/users/logout') Logout
+     
+    
+     block content
+      
+    
